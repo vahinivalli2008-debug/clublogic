@@ -18,9 +18,9 @@
   <section id="home" class="hero">
     <div class="eyebrow">LOGIC-BASED DECISION SUPPORT</div>
     <h1>Find the campus club<br><span>you are eligible for.</span></h1>
-    <p>Enter your CGPA, attendance and interest. ClubLogic checks your details against the four club rules and explains every failed condition.</p>
+    <p>Enter your CGPA, attendance and interest. ClubLogic checks your details against each club's rules and explains every failed condition.</p>
     <div class="actions"><a class="btn primary" href="#checker">Check eligibility</a><a class="btn secondary" href="#logic">Explore Prolog logic</a></div>
-    <div class="stats"><div><strong>4</strong><span>Campus clubs</span></div><div><strong>3</strong><span>Conditions checked</span></div><div><strong>100%</strong><span>Rule transparency</span></div></div>
+    <div class="stats"><div><strong id="club-count">4</strong><span>Campus clubs</span></div><div><strong>3</strong><span>Conditions checked</span></div><div><strong>100%</strong><span>Rule transparency</span></div></div>
   </section>
 
   <section id="checker" class="section">
@@ -47,7 +47,25 @@
   </section>
 
   <section id="clubs" class="section">
-    <div class="eyebrow">CLUB CATALOG</div><h2>Club requirements</h2><p class="muted">These values are copied from your supplied <code>eligibility.pl</code> program.</p>
+    <div class="section-head">
+      <div><div class="eyebrow">CLUB CATALOG</div><h2>Club requirements</h2><p class="muted">These values are copied from your supplied <code>eligibility.pl</code> program.</p></div>
+      <button id="add-club" class="btn primary" type="button">Add a club</button>
+    </div>
+    <p class="storage-note">Add clubs or adjust their requirements and color. Changes are saved in this browser only.</p>
+    <div id="club-status" class="status-message hidden" role="status" aria-live="polite"></div>
+    <div id="club-editor" class="panel club-editor hidden" aria-labelledby="club-editor-title">
+      <div class="editor-heading"><div class="eyebrow">CLUB DETAILS</div><h3 id="club-editor-title">Add a club</h3></div>
+      <form id="club-form">
+        <label>Club name<input id="club-name" type="text" maxlength="60" required></label>
+        <label>Interest<input id="club-interest" type="text" maxlength="60" placeholder="For example, music or programming" required></label>
+        <div class="two">
+          <label>Minimum CGPA (0–10)<input id="club-gpa" type="number" min="0" max="10" step="0.1" required></label>
+          <label>Minimum attendance (0–100)<input id="club-attendance" type="number" min="0" max="100" step="1" required></label>
+        </div>
+        <label class="color-field">Club color<input id="club-color" type="color" value="#237a75"></label>
+        <div class="editor-actions"><button id="cancel-club" class="btn secondary" type="button">Cancel</button><button class="btn primary" type="submit">Save club</button></div>
+      </form>
+    </div>
     <div id="club-cards" class="cards"></div>
   </section>
 
